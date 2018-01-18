@@ -1,6 +1,6 @@
-pragma solidity ^0.4.16;
+pragma solidity ^0.4.18;
 
-import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
+import './Ownable.sol';
 
 contract SleepCoin is Ownable {
     /* This creates a map with all balances */
@@ -18,10 +18,10 @@ contract SleepCoin is Ownable {
     }
 
     /* Send coins */
-    function transfer(address _to, uint256 _value) public onlyOwner {
-        require(balances[msg.sender] >= _value);
+    function transfer(address _from, address _to, uint256 _value) public onlyOwner {
+        require(balances[_from] >= _value);
         require(balances[_to] + _value >= balances[_to]);
-        balances[msg.sender] -= _value;
+        balances[_from] -= _value;
         balances[_to] += _value;
     }
 }

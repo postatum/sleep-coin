@@ -1,4 +1,4 @@
-pragma solidity ^0.4.16;
+pragma solidity ^0.4.18;
 
 contract TeamControlled {
     mapping (address => bool) public teamMembers;
@@ -16,7 +16,6 @@ contract TeamControlled {
     }
 
     function addMember(address _usr) public onlyTeam {
-        require(_usr != address(0));
         if (!teamMembers[_usr]) {
             TeamMemberAdded(_usr);
             teamMembers[_usr] = true;
@@ -24,7 +23,6 @@ contract TeamControlled {
     }
 
     function removeMember(address _mmbr) public onlyTeam {
-        require(_mmbr != address(0));
         if (teamMembers[_mmbr]) {
             TeamMemberRemoved(_mmbr);
             teamMembers[_mmbr] = false;

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.16;
+pragma solidity ^0.4.18;
 
 import './TeamControlled.sol';
 import './SleepCoin.sol';
@@ -7,7 +7,6 @@ contract SleepCoinManager is TeamControlled {
     address public coinAddr;
 
     function SleepCoinManager(address _coinAddr) public {
-        require(_coinAddr != address(0));
         watchCoin(_coinAddr);
     }
 
@@ -33,6 +32,6 @@ contract SleepCoinManager is TeamControlled {
 
     function transfer(address _to, uint256 _value) public {
         SleepCoin coin = SleepCoin(coinAddr);
-        coin.transfer(_to, _value);
+        coin.transfer(msg.sender, _to, _value);
     }
 }
