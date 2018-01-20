@@ -22,5 +22,4 @@ module.exports = function (deployer, network, accounts) {
     .then(function () { return manager.addMember(bravo) })
     .then(function () { return manager.mint(alpha, 420) })
     .then(function () { return manager.mint(bravo, 110) })
-    .then(function () { return manager.getBalance(alpha) })
 }
