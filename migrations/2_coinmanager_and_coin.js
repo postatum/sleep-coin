@@ -2,8 +2,8 @@ var SleepCoinManager = artifacts.require('./SleepCoinManager.sol')
 var SleepCoin = artifacts.require('./SleepCoin.sol')
 
 module.exports = function (deployer, network, accounts) {
-  var alpha = accounts[0]
-  var bravo = accounts[1]
+  var alice = accounts[0]
+  var bob = accounts[1]
   var manager, coin
 
   return deployer
@@ -19,7 +19,9 @@ module.exports = function (deployer, network, accounts) {
       return coin.transferOwnership(manager.address)
     })
     .then(function () { return manager.watchCoin(coin.address) })
-    .then(function () { return manager.addMember(bravo) })
-    .then(function () { return manager.mint(alpha, 420) })
-    .then(function () { return manager.mint(bravo, 110) })
+    .then(function () { return manager.addMember(bob) })
+    .then(function() {
+      console.log('SleepCoin deployed at:', coin.address)
+      console.log('SleepCoinManager deployed at:', manager.address)
+    })
 }
